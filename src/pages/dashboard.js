@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 
 const prisma = new PrismaClient();
 
@@ -247,10 +248,13 @@ export default function Dashboard({ user, tasks: initialTasks }) {
               <div className="flex justify-center -mt-12 mb-4">
                 <div className="h-24 w-24 rounded-full bg-purple-700 border-4 border-purple-900 flex items-center justify-center text-3xl font-bold text-[#e6e6fa] shadow-md overflow-hidden">
                   {avatarPreview ? (
-                    <img 
+                    <Image 
                       src={avatarPreview} 
                       alt="Profile" 
                       className="w-full h-full object-cover"
+                      width={96} 
+                      height={96} 
+                      style={{ objectFit: 'cover' }}
                     />
                   ) : (
                     getInitials(user.name)
@@ -434,7 +438,7 @@ export default function Dashboard({ user, tasks: initialTasks }) {
                     <div className="relative">
                       <div className="h-24 w-24 rounded-full bg-[rgba(230,230,250,0.1)] border-4 border-[rgba(255,255,255,0.2)] flex items-center justify-center overflow-hidden">
                         {avatarPreview ? (
-                          <img src={avatarPreview} alt="Preview" className="w-full h-full object-cover" />
+                          <Image src={avatarPreview} alt="Preview" className="w-full h-full object-cover" width={96} height={96} style={{ objectFit: 'cover' }} />
                         ) : (
                           <span className="text-3xl font-bold text-[#e6e6fa]">
                             {getInitials(user.name)}
